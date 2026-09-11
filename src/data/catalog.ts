@@ -1,0 +1,9 @@
+export type McpStatus='ready'|'setup'|'disabled';
+export type McpServer={id:string;name:string;category:string;description:string;repository:string;transport:'stdio'|'http';command?:string;args?:string[];env?:string[];recommended?:boolean};
+export const catalog:McpServer[]=[
+{id:'github',name:'GitHub',category:'Development',description:'Repositorios, commits, issues y pull requests.',repository:'https://github.com/github/github-mcp-server',transport:'stdio',command:'docker',args:['run','-i','--rm','-e','GITHUB_PERSONAL_ACCESS_TOKEN','ghcr.io/github/github-mcp-server'],env:['GITHUB_PERSONAL_ACCESS_TOKEN'],recommended:true},
+{id:'supabase',name:'Supabase',category:'Database',description:'PostgreSQL y herramientas de proyecto Supabase.',repository:'https://github.com/supabase-community/supabase-mcp',transport:'stdio',command:'npx',args:['-y','@supabase/mcp-server-supabase@latest'],env:['SUPABASE_ACCESS_TOKEN'],recommended:true},
+{id:'playwright',name:'Playwright',category:'Testing',description:'Automatización y pruebas de navegador.',repository:'https://github.com/microsoft/playwright-mcp',transport:'stdio',command:'npx',args:['@playwright/mcp@latest'],recommended:true},
+{id:'filesystem',name:'Filesystem',category:'Development',description:'Acceso controlado a directorios autorizados.',repository:'https://github.com/modelcontextprotocol/servers',transport:'stdio',command:'npx',args:['-y','@modelcontextprotocol/server-filesystem','${WORKSPACE_PATH}'],env:['WORKSPACE_PATH'],recommended:true},
+{id:'maps',name:'Maps',category:'Location',description:'Integración de mapas y geolocalización.',repository:'',transport:'http'},
+{id:'sentry',name:'Sentry',category:'Observability',description:'Errores y diagnóstico de aplicaciones.',repository:'https://github.com/getsentry/sentry-mcp',transport:'http'}];
